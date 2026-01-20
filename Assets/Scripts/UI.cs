@@ -4,9 +4,11 @@ using UnityEngine;
 using TMPro;
 
 public class UI : MonoBehaviour
-//{
-//[SerializeField] private TMP_Text ()
 {
-//Points ++ 
-//}
+[SerializeField] private TMP_Text pointsText;
+
+public void UpdatePoints (int points)
+{
+    pointsText.text = points.ToString();
+}
 }

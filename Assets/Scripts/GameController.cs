@@ -4,22 +4,64 @@ using UnityEngine;
 using TMPro;
 public class GameController : MonoBehaviour
 {
-    private void Update()
+[SerializeField] private GameObject coinPrefab;
+[SerializeField] private UI ui;
+
+
+private float spawnTimer = 0f;
+private int points = 0;
+private void Update()
     {
+       //timer 
+        spawnTimer -= Time.deltaTime;
+
+        // coin spawn
+        if (spawnTimer <= 0)
+        {
+            SpawnCoin();
+
+           
+            spawnTimer = Random.Range(0.2f, 3f);
+        }
+    }
+
+    private void SpawnCoin()
+    {
+       //coin spawn right
+        Camera cam = Camera.main;
+        float y = cam.transform.position.y;
+        // Calculate the right edge of the screen
+        float rightEdge = cam.transform.position.x + (cam.orthographicSize * cam.aspect);
+        Vector3 position = new Vector3(rightEdge + 1f, y, 0f);
+
+        Instantiate(coinPrefab, position, Quaternion.identity);
+    }
+
+   
+    public void UpdatePoints (int points)
+{
+    pointsText.text = points.ToString();
+        points++;
+}
+}
+    
+
+
+
+    
    // Range(float minInclusive, float maxInclusive);
 
-    }
+    
     // public Coin prefab; instantiate and destry when collide with newcollider
 
-}
-public void Coin prefab()
-{
-    var position = new Vector3(Random.Range(-10.0f, 1-.0f), 0, Random.Range(-10.0f, 10.0f));
-    Instantiate(prefab, position, Quaternion.identity);
-//[SerializeField] private TMP_Text ()
+
+   // var position = new Vector3(Random.Range(-10.0f, 1-.0f), 0, Random.Range(-10.0f, 10.0f));
+    //Instantiate(prefab, position, Quaternion.identity);
+ 
+
+//public void SpawnCoin()
 //{
-//Points ++ 
 //if coin collides with Death_collider;
 //Destroy 
 //}
-}
+

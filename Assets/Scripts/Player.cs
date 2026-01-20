@@ -23,7 +23,7 @@ private void OnCollisionEnter2D (Collision2D collider)
 }
 void Update()
 {
-  if (Input.GetKey(KeyCode.UpArrow) && _isGrounded)
+  if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
             _isGrounded = false;
 
